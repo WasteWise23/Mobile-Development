@@ -31,7 +31,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.capstone.wastewise.data.dummy.DummyData
 
-@OptIn(ExperimentalGlideComposeApi::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun VerticalBankSampahCard(
     imageUrl: String,
@@ -41,7 +41,7 @@ fun VerticalBankSampahCard(
 ) {
     Card(
         modifier = Modifier
-            .height(250.dp)
+            .height(230.dp)
             .width(200.dp),
         elevation = CardDefaults.cardElevation(5.dp)
     ) {
@@ -88,7 +88,8 @@ fun VerticalBankSampahCard(
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Normal,
                         color = MaterialTheme.colorScheme.onBackground
-                    )
+                    ),
+                    maxLines = 2
                 )
             }
         }

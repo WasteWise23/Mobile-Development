@@ -8,10 +8,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import com.capstone.wastewise.ui.screen.home.HomeScreen
 import com.capstone.wastewise.ui.theme.WasteWiseTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Home()
                 }
             }
         }
@@ -34,17 +37,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun Home() {
+    val contentRoute = rememberSaveable { mutableStateOf(0) }
+
+    HomeScreen(contentRoute = contentRoute)
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    WasteWiseTheme {
-        Greeting("Android")
-    }
-}

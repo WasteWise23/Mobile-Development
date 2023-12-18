@@ -1,5 +1,6 @@
 package com.capstone.wastewise.ui.screen.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,17 +26,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.capstone.wastewise.component.*
 import com.capstone.wastewise.component.Font
+import com.capstone.wastewise.data.dummy.DummyData
 import com.capstone.wastewise.data.entities.BankSampahEntity
 import com.capstone.wastewise.ui.theme.WasteWiseTheme
 
+
 @Composable
 fun HomeScreen(
-    contentRoute: MutableState<Int>
+    contentRoute: MutableState<Int>,
 ) {
-
-    val bankSampahList = remember {
-        mutableStateListOf<BankSampahEntity>()
-    }
+    val bankSampahList = DummyData.bankSampah.values.toList()
     Column {
         CustomNavbar {
             Text(
@@ -48,11 +48,12 @@ fun HomeScreen(
             )
         }
 
-        Row (
+        Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
-        ){
-            Text(text = "Bank Sampah",
+        ) {
+            Text(
+                text = "Bank Sampah",
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontFamily = Font.QuickSand,
@@ -70,43 +71,49 @@ fun HomeScreen(
                 contentRoute.value = 2
             }
         }
-    }
-
-    LazyRow (
-        contentPadding = PaddingValues(horizontal = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ){
-        items(bankSampahList.take(5)) { value ->
-            VerticalBankSampahCard(
-                imageUrl = value.profile_image_url ?: "",
-                name = value.name ?: "",
-                location = value.location ?: "")
-        }
-    }
-    
-    Spacer(modifier = Modifier.padding(vertical = 12.dp))
-
-    Row (
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
-    ){
-        Text(text = "Bank Sampah",
-            style = TextStyle(
-                fontSize = 16.sp,
-                fontFamily = Font.QuickSand,
-                fontWeight = FontWeight.Bold
-            ),
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        CustomFlatIconButton(
-            icon = Icons.Default.KeyboardArrowRight,
-            label = "More",
-            isFrontIcon = false
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            contentRoute.value = 2
+            items(bankSampahList.take(5)) { value ->
+                VerticalBankSampahCard(
+                    imageUrl = value.profile_image_url ?: "",
+                    name = value.name ?: "",
+                    location = value.location ?: ""
+                )
+            }
         }
+
+        if (bankSampahList.size > 0) {
+            Spacer(modifier = Modifier.padding(vertical = 12.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
+            ) {
+                Text(
+                    text = "History",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = Font.QuickSand,
+                        fontWeight = FontWeight.Bold
+                    ),
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                CustomFlatIconButton(
+                    icon = Icons.Default.KeyboardArrowRight,
+                    label = "More",
+                    isFrontIcon = false
+                ) {
+                    contentRoute.value = 1
+                }
+            }
+        }
+
     }
+
+
 }
 
