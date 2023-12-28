@@ -23,7 +23,7 @@ fun CustomNavbar(
     val theme = MaterialTheme.colorScheme
 
     NavigationBar(
-        containerColor = theme.secondary,
+        containerColor = Color(0xFF44AEF3),
         contentColor = Color.White,
         modifier = modifier
     ) {

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 android {
@@ -30,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -83,11 +84,38 @@ dependencies {
     // system ui controller
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
     //Camera
-    implementation("androidx.camera:camera-camera2:1.4.0-alpha02")
-    implementation("androidx.camera:camera-view:1.4.0-alpha02")
-    implementation("androidx.camera:camera-lifecycle:1.3.0")
+    val cameraxVersion = "1.3.0"
+
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+//    implementation("androidx.camera:camera-compose:$cameraxVersion")
+    implementation("androidx.camera:camera-video:$cameraxVersion")
+
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-extensions:$cameraxVersion")
     //Permissions
     implementation("com.google.accompanist:accompanist-permissions:0.18.0")
     // Compose Glide
     implementation ("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+
+
+    implementation ("io.insert-koin:koin-core:3.5.3")
+    implementation ("io.insert-koin:koin-android:3.5.3")
+    implementation ("io.insert-koin:koin-androidx-compose:3.4.6")
+    val koin_ksp_version = "1.3.0"
+    implementation ("io.insert-koin:koin-annotations:$koin_ksp_version")
+    ksp ("io.insert-koin:koin-ksp-compiler:$koin_ksp_version")
+
+
+    implementation ("androidx.compose.material:material-icons-extended")
+    implementation ("androidx.compose.material:material:1.5.1")
+    ///// LIFECYCLE /////
+    val lifecycle_version = "2.6.2"
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+
 }

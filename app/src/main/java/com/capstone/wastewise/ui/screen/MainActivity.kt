@@ -9,10 +9,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import com.capstone.wastewise.ui.screen.home.HomeScreen
+import com.capstone.wastewise.ui.screen.scan.CameraScreen
 import com.capstone.wastewise.ui.theme.WasteWiseTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,13 +29,20 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
                 ) {
-
+                    Home()
                 }
             }
         }
     }
+}
+
+@Composable
+fun Home() {
+    val contentRoute = rememberSaveable { mutableStateOf(0) }
+
+    HomeScreen(contentRoute = contentRoute)
+//    CameraScreen()
 }
 
 
