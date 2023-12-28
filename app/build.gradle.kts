@@ -70,6 +70,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     //Nav
     implementation ("androidx.navigation:navigation-compose:2.7.6")
+    // Clip Circle Image from URL
+    implementation ("io.coil-kt:coil-compose:2.2.2")
     // ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")

@@ -38,13 +38,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Home(
     modifier: Modifier = Modifier.fillMaxSize(),
-    navController: NavController
+    navController: NavController,
 ) {
     val contentRoute = rememberSaveable { mutableStateOf(0) }
 
     HomeScreen(contentRoute = contentRoute,
         modifier = Modifier,
-        navController)
+        navController,
+        )
 //    Camera()
 }
 

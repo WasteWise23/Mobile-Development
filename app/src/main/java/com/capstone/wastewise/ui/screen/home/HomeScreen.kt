@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -36,6 +37,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.capstone.wastewise.component.*
 import com.capstone.wastewise.component.Font
+import com.capstone.wastewise.data.dummy.DummyData
 import com.capstone.wastewise.data.entities.BankSampahEntity
 import com.capstone.wastewise.navigation.Screen
 import com.capstone.wastewise.ui.screen.scan.CameraScreen
@@ -45,11 +47,9 @@ import com.capstone.wastewise.ui.theme.WasteWiseTheme
 fun HomeScreen(
     contentRoute: MutableState<Int>,
     modifier: Modifier = Modifier.background(Color.White),
-            navController: NavController
+    navController: NavController,
 ) {
-    val bankSampahList = remember {
-        mutableStateListOf<BankSampahEntity>()
-    }
+
     Column {
         CustomNavbar {
             Text(
@@ -64,43 +64,33 @@ fun HomeScreen(
             IconButton(onClick = {
                 navController.navigate(Screen.Camera.route)
             }) {
-                Icon(imageVector = Icons.Default.Camera, contentDescription = "" ,
+                Icon(
+                    imageVector = Icons.Default.Camera, contentDescription = "",
                     tint = Color.White,
-                    )
+                )
             }
         }
-        LazyRow (
+
+        Spacer(modifier = Modifier.height(8.dp))
+        LazyColumn(
             contentPadding = PaddingValues(horizontal = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ){
-            items(bankSampahList.take(5)) { value ->
-                VerticalBankSampahCard(
-                    imageUrl = value.profile_image_url ?: "",
-                    name = value.name ?: "",
-                    location = value.location ?: "")
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(DummyData.bankSampah, key = { it.id }) { value ->
+                HorizontalCard(
+                    profileImageUrl = value.profile_image_url,
+                    name = value.name,
+                    location = value.location,
+                ) {
+                    navController.navigate(
+                        Screen.Detail.createRoute(value.id)
+                    )
+                }
             }
         }
 
-        Spacer(modifier = Modifier.padding(vertical = 12.dp))
-
-        Row (
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
-        ){
-            Text(text = "Bank Sampah",
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontFamily = Font.QuickSand,
-                    fontWeight = FontWeight.Bold
-                ),
-            )
-
-            Spacer(modifier = Modifier.weight(1f))
-
-
-        }
+        Spacer(modifier = Modifier.height(8.dp))
     }
-
 
 
 }
