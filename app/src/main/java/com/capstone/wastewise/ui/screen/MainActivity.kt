@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.capstone.wastewise.navigation.AppNavigation
 import com.capstone.wastewise.ui.screen.home.HomeScreen
+import com.capstone.wastewise.ui.screen.scan.Camera
 import com.capstone.wastewise.ui.screen.scan.CameraScreen
 import com.capstone.wastewise.ui.theme.WasteWiseTheme
 
@@ -41,7 +42,7 @@ fun Home(
     val contentRoute = rememberSaveable { mutableStateOf(0) }
 
     HomeScreen(contentRoute = contentRoute)
-//    CameraScreen()
+//    Camera()
 }
 
 

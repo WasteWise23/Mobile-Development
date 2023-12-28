@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.capstone.wastewise.ui.screen.Home
 import com.capstone.wastewise.ui.screen.home.HomeScreen
+import com.capstone.wastewise.ui.screen.scan.Camera
 import com.capstone.wastewise.ui.screen.scan.CameraScreen
 
 @Composable
@@ -24,7 +25,7 @@ fun AppNavigation(
             Home()
         }
         composable(Screen.Camera.route) {
-            CameraScreen()
+            Camera()
         }
 
     }

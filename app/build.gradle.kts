@@ -118,4 +118,6 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
 
+    implementation ("com.google.accompanist:accompanist-permissions:0.32.0")
+
 }
