@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
@@ -61,18 +62,54 @@ fun HomeScreen(
             )
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = {
-                navController.navigate("camera")
+                navController.navigate(Screen.Camera.route)
             }) {
                 Icon(imageVector = Icons.Default.Camera, contentDescription = "" ,
                     tint = Color.White,
                     )
             }
         }
+//        Spacer(modifier = Modifier.height(200.dp))
+//        Row (
+//            verticalAlignment = Alignment.CenterVertically,
+//            modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
+//
+//        ){
+//            Text(text = "Bank Sampah",
+//                style = TextStyle(
+//                    fontSize = 16.sp,
+//                    fontFamily = Font.QuickSand,
+//                    fontWeight = FontWeight.Bold
+//                ),
+//            )
+//
+//            Spacer(modifier = Modifier.weight(1f))
+//
+//            CustomFlatIconButton(
+//                icon = Icons.Default.KeyboardArrowRight,
+//                label = "More",
+//                isFrontIcon = false
+//            ) {
+//                contentRoute.value = 2
+//            }
+//        }
+        LazyRow (
+            contentPadding = PaddingValues(horizontal = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ){
+            items(bankSampahList.take(5)) { value ->
+                VerticalBankSampahCard(
+                    imageUrl = value.profile_image_url ?: "",
+                    name = value.name ?: "",
+                    location = value.location ?: "")
+            }
+        }
+
+        Spacer(modifier = Modifier.padding(vertical = 12.dp))
 
         Row (
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
-
         ){
             Text(text = "Bank Sampah",
                 style = TextStyle(
@@ -84,52 +121,11 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            CustomFlatIconButton(
-                icon = Icons.Default.KeyboardArrowRight,
-                label = "More",
-                isFrontIcon = false
-            ) {
-                contentRoute.value = 2
-            }
+
         }
     }
 
-    LazyRow (
-        contentPadding = PaddingValues(horizontal = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ){
-        items(bankSampahList.take(5)) { value ->
-            VerticalBankSampahCard(
-                imageUrl = value.profile_image_url ?: "",
-                name = value.name ?: "",
-                location = value.location ?: "")
-        }
-    }
-    
-    Spacer(modifier = Modifier.padding(vertical = 12.dp))
 
-    Row (
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
-    ){
-        Text(text = "Bank Sampah",
-            style = TextStyle(
-                fontSize = 16.sp,
-                fontFamily = Font.QuickSand,
-                fontWeight = FontWeight.Bold
-            ),
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        CustomFlatIconButton(
-            icon = Icons.Default.KeyboardArrowRight,
-            label = "More",
-            isFrontIcon = false
-        ) {
-            contentRoute.value = 2
-        }
-    }
 
 }
 

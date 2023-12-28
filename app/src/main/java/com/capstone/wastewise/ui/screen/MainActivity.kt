@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import com.capstone.wastewise.navigation.AppNavigation
 import com.capstone.wastewise.ui.screen.home.HomeScreen
 import com.capstone.wastewise.ui.screen.scan.CameraScreen
 import com.capstone.wastewise.ui.theme.WasteWiseTheme
@@ -26,19 +27,17 @@ class MainActivity : ComponentActivity() {
             WasteWiseTheme {
 
                 val navHostController: NavHostController = rememberNavController()
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                ) {
-                    Home()
-                }
+                AppNavigation(navHostController = navHostController)
+
             }
         }
     }
 }
 
 @Composable
-fun Home() {
+fun Home(
+    modifier: Modifier = Modifier.fillMaxSize(),
+) {
     val contentRoute = rememberSaveable { mutableStateOf(0) }
 
     HomeScreen(contentRoute = contentRoute)
