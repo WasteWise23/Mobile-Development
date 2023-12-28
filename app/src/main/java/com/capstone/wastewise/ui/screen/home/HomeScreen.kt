@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.capstone.wastewise.component.*
 import com.capstone.wastewise.component.Font
@@ -43,10 +44,9 @@ import com.capstone.wastewise.ui.theme.WasteWiseTheme
 @Composable
 fun HomeScreen(
     contentRoute: MutableState<Int>,
-    modifier: Modifier = Modifier.background(Color.White)
-
+    modifier: Modifier = Modifier.background(Color.White),
+            navController: NavController
 ) {
-    val navController = rememberNavController()
     val bankSampahList = remember {
         mutableStateListOf<BankSampahEntity>()
     }
@@ -69,30 +69,6 @@ fun HomeScreen(
                     )
             }
         }
-//        Spacer(modifier = Modifier.height(200.dp))
-//        Row (
-//            verticalAlignment = Alignment.CenterVertically,
-//            modifier = Modifier.padding(vertical = 16.dp, horizontal = 12.dp)
-//
-//        ){
-//            Text(text = "Bank Sampah",
-//                style = TextStyle(
-//                    fontSize = 16.sp,
-//                    fontFamily = Font.QuickSand,
-//                    fontWeight = FontWeight.Bold
-//                ),
-//            )
-//
-//            Spacer(modifier = Modifier.weight(1f))
-//
-//            CustomFlatIconButton(
-//                icon = Icons.Default.KeyboardArrowRight,
-//                label = "More",
-//                isFrontIcon = false
-//            ) {
-//                contentRoute.value = 2
-//            }
-//        }
         LazyRow (
             contentPadding = PaddingValues(horizontal = 12.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)

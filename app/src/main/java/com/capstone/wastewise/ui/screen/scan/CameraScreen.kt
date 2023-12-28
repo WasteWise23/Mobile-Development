@@ -51,6 +51,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.capstone.wastewise.component.CustomNavbar
 import com.capstone.wastewise.ui.screen.scan.utils.rotateBitmap
@@ -59,7 +60,7 @@ import java.util.concurrent.Executor
 
 @Composable
 fun CameraScreen(
-//    navHostController: NavHostController,
+    navController: NavController
 ) {
     Column (
         Modifier.fillMaxSize()
@@ -70,7 +71,7 @@ fun CameraScreen(
                 Arrangement.SpaceBetween
 
             ) {
-                IconButton(onClick = { /*navHostController.popBackStack()*/ })
+                IconButton(onClick = { navController.popBackStack() })
                 {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,

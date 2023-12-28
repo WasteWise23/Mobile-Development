@@ -1,6 +1,7 @@
 package com.capstone.wastewise.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,18 +15,17 @@ import com.capstone.wastewise.ui.screen.scan.CameraScreen
 fun AppNavigation(
     navHostController: NavHostController
 ) {
-    val navController = rememberNavController()
 
 
     NavHost(
-        navController = navController,
+        navController = navHostController,
         startDestination = Screen.Home.route
     ) {
         composable(Screen.Home.route) {
-            Home()
+            Home(modifier = Modifier, navHostController)
         }
         composable(Screen.Camera.route) {
-            Camera()
+            Camera(navHostController)
         }
 
     }

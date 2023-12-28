@@ -14,6 +14,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.capstone.wastewise.navigation.AppNavigation
 import com.capstone.wastewise.ui.screen.home.HomeScreen
@@ -26,7 +27,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WasteWiseTheme {
-
                 val navHostController: NavHostController = rememberNavController()
                 AppNavigation(navHostController = navHostController)
 
@@ -38,10 +38,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Home(
     modifier: Modifier = Modifier.fillMaxSize(),
+    navController: NavController
 ) {
     val contentRoute = rememberSaveable { mutableStateOf(0) }
 
-    HomeScreen(contentRoute = contentRoute)
+    HomeScreen(contentRoute = contentRoute,
+        modifier = Modifier,
+        navController)
 //    Camera()
 }
 
